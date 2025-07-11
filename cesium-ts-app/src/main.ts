@@ -1,14 +1,4 @@
-// src/main.ts
-import "cesium/Widgets/widgets.css";
-import {
-  Viewer,
-  Ion,
-  createWorldTerrainAsync,
-  Cartesian3,
-  Color,
-  Cartesian2,
-  VerticalOrigin,
-} from "cesium";
+import { Viewer, Ion, createWorldTerrainAsync, Cartesian3, Math } from "cesium";
 
 // import.meta.env で読み取る
 const token = import.meta.env.VITE_CESIUM_ION_ACCESS_TOKEN;
@@ -26,26 +16,29 @@ async function initCesium() {
     requestVertexNormals: true, // 必要に応じてオプション指定可
   });
 
-  // 3. Viewer を初期化
+  // Cesiumビューワーを作成
   const viewer = new Viewer("cesiumContainer", {
     terrainProvider,
-    timeline: false,
+    baseLayerPicker: false,
+    geocoder: false,
+    homeButton: false,
+    sceneModePicker: false,
+    navigationHelpButton: false,
     animation: false,
+    timeline: false,
+    fullscreenButton: false,
+    vrButton: false,
   });
 
-  // 4. サンプル：東京駅にピン
-  viewer.entities.add({
-    name: "東京駅",
-    position: Cartesian3.fromDegrees(139.767, 35.681),
-    point: { pixelSize: 12, color: Color.ORANGE },
-    label: {
-      text: "東京駅",
-      font: "14px sans-serif",
-      verticalOrigin: VerticalOrigin.BOTTOM,
-      pixelOffset: new Cartesian2(0, -10),
+  // 初期位置を東京に設定
+  viewer.camera.setView({
+    destination: Cartesian3.fromDegrees(139.6917, 35.6895, 10000),
+    orientation: {
+      heading: Math.toRadians(0),
+      pitch: Math.toRadians(-90),
+      roll: 0,
     },
   });
-  viewer.zoomTo(viewer.entities);
 }
 
 // 起動

@@ -1,11 +1,9 @@
-// vite.config.ts
 import { defineConfig } from "vite";
 import { viteStaticCopy } from "vite-plugin-static-copy";
 import path from "path";
 
 export default defineConfig({
-  root: ".", // プロジェクトルート
-  base: "./", // 相対パスで出力
+  server: { port: 3000 },
   plugins: [
     viteStaticCopy({
       targets: [
@@ -49,8 +47,12 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      // Cesium のローダーが参照するパスを、ビルド後の /cesium 配下にマッピング
+      // `import "cesium"` などがここを参照できるように
       cesium: path.resolve(__dirname, "node_modules/cesium/Build/Cesium"),
     },
+  },
+  define: {
+    // これで Cesium ランタイム中の window.CESIUM_BASE_URL を "/cesium/" に置き換え
+    "window.CESIUM_BASE_URL": JSON.stringify("/cesium/"),
   },
 });
