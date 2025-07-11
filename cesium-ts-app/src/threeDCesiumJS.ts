@@ -15,11 +15,11 @@ if (!token) {
 }
 
 export const threeDCesium = async () => {
-  // 1. トークン＆ベースURL
+  // トークン＆ベースURL
   Ion.defaultAccessToken = token || "";
   (window as any).CESIUM_BASE_URL = "./cesium";
 
-  // 2. 非同期で World Terrain プロバイダーを取得
+  // 非同期で World Terrain プロバイダーを取得
   const terrainProvider = await createWorldTerrainAsync({
     requestVertexNormals: true, // 必要に応じてオプション指定可
   });
