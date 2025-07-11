@@ -14,7 +14,7 @@ if (!token) {
   throw new Error("VITE_CESIUM_ION_ACCESS_TOKEN is not defined");
 }
 
-async function threeDCesium() {
+export const threeDCesium = async () => {
   // 1. トークン＆ベースURL
   Ion.defaultAccessToken = token || "";
   (window as any).CESIUM_BASE_URL = "./cesium";
@@ -49,7 +49,7 @@ async function threeDCesium() {
 
   // カメラを3Dモデルに向ける
   viewer.trackedEntity = viewer.entities.values[0];
-}
+};
 
 // 起動
 threeDCesium();

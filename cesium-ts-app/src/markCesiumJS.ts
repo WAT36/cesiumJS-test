@@ -15,7 +15,7 @@ if (!token) {
   throw new Error("VITE_CESIUM_ION_ACCESS_TOKEN is not defined");
 }
 
-async function markCesium() {
+export const markCesium = async () => {
   // 1. トークン＆ベースURL
   Ion.defaultAccessToken = token || "";
   (window as any).CESIUM_BASE_URL = "./cesium";
@@ -98,7 +98,7 @@ async function markCesium() {
   viewer.camera.setView({
     destination: Cartesian3.fromDegrees(139.6917, 35.6895, 50000),
   });
-}
+};
 
 // 起動
 markCesium();

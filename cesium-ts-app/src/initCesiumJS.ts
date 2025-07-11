@@ -6,8 +6,8 @@ if (!token) {
   throw new Error("VITE_CESIUM_ION_ACCESS_TOKEN is not defined");
 }
 
-async function initCesium() {
-  // 1. トークン＆ベースURL
+export const initCesium = async () => {
+  // トークン＆ベースURL
   Ion.defaultAccessToken = token || "";
   (window as any).CESIUM_BASE_URL = "./cesium";
 
@@ -39,7 +39,7 @@ async function initCesium() {
       roll: 0,
     },
   });
-}
+};
 
 // 起動
 initCesium();
