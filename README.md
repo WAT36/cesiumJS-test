@@ -13,13 +13,8 @@ VITE_CESIUM_ION_ACCESS_TOKEN=eyJ.....
 
 # 開発サーバ起動
 
+```
 npm run dev
+```
 
-または
-
-# ビルドしてプレビュー
-
-npm run build
-npm run serve
-
-で http://localhost:4173/ に表示される
+で http://localhost:3000/ に表示される
