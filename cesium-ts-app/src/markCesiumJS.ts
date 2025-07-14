@@ -48,7 +48,7 @@ export const markCesium = async () => {
     },
   });
 
-  // 横浜の位置にビルボードを追加
+  // 横浜の位置にマーカーを追加
   viewer.entities.add({
     position: Cartesian3.fromDegrees(139.6226, 35.466),
     billboard: {
